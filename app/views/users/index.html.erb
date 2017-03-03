@@ -1,0 +1,19 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    プロフィール
+  </div>
+
+  <div class="panel-body">
+    <% @user.each do |user| %>
+      <span class="label label-info"><%= user.profile %></span>
+      <%= user.body %>
+      <%# edit delete %>
+      ( <%= link_to "edit", edit_user_path(user) %>
+        <%= link_to "destroy", user , method: :delete, data: { confirm: '削除してもよろしいですか？'} %> )
+      <br>
+    <% end %>
+  </div>
+</div>
+
+<% #部分テンプレートを読み込んでいる %>
+<%= render 'form' %>
