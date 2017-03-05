@@ -2,17 +2,28 @@
   <div class="panel-heading">
     プロフィール
   </div>
-  
-  <div>
-    <h1>
-    <%= gravatar_for @user %>
-    <%= @user.name %>
-    </h1>
-  </div>
-  
+  <div calss="row">
+      <aside calss="col-md-4">
+          <section class="user_info">
+              <h1>
+                  <%= gravatar_for @user %>
+                  <%= @user.name %>
+              </h1>
+          </section>
+      </aside>
+      <div>
+          <% if @user.microposts.any? %>
+              <h3>Microposts (<%= @user.microposts.count %>)</h3>
+              <ol class="microposts">
+                  <%= render @microposts %>
+              </ol>
+          <% end %>
+      </div>
+  </div>  
   <div class="panel-body">
       <span class="label label-success"><%= @user.profile %></span>
       <span class="label label-success"><%= @user.location %></span>
       <br>
   </div>
 </div>
+
