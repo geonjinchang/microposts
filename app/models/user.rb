@@ -32,6 +32,6 @@ class User < ActiveRecord::Base
   
   # タイムラインを取得するメソッド
   def feed_items
-    Micropost.shere(user_id: following_user_ids + [self.id])
+    Micropost.where(user_id: following_user_ids + [self.id])
   end
 end
