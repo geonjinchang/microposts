@@ -8,5 +8,6 @@
       <%= link_to "delete", micropost, method: :delete,
                                        data: { confirm: "You sure?" } %>
     <% end %>
+    <%= render 'microposts/favorite_form', micropost: micropost %>
   </span>
 </li>

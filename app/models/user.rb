@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
                                      foreign_key: "follower_id",
                                      dependent:   :destroy
   has_many :following_users, through: :following_relationships, source: :followed
+  has_many :favorites, foreign_key: :user_id,dependent: :destroy
+  has_many :favorite_posts, through: :favorites, source: :micropost
   
   # 他のユーザーをフォローする
   def follow(other_user)
@@ -28,6 +30,19 @@ class User < ActiveRecord::Base
   # あるユーザーをフォローしているかどうか？
   def following?(other_user)
     following_users.include?(other_user)
+  end
+  
+  def favorite(micropost)
+    favorites.find_or_create_by(micropost_id: micropost.id)
+  end
+  
+  def unfavorite(micropost)
+    fav = favorites.find_by(micropost_id: micropost.id)
+    fav.destroy if fav
+  end
+  
+  def favorites?(micropost)
+    favorite_posts.include?(micropost)
   end
   
   # タイムラインを取得するメソッド

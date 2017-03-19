@@ -1,0 +1,11 @@
+<% if current_user != micropost.user %>
+  <div id="favbtn-<%= micropost.id %>">
+  <% if current_user.favorites?(micropost) %>
+       <%# 既にお気に入りにしている %>
+       <%= render 'microposts/unfavorite', micropost: micropost %>
+  <% else %>
+       <%# まだお気に入りにしていない %>
+       <%= render 'microposts/favorite', micropost: micropost %>
+  <% end %>
+  </div>
+<% end %>
