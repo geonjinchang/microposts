@@ -1,0 +1,6 @@
+<h2>Followers list</h2>
+
+<% @follow.each do |user| %>
+    <%= link_to user.name, user %>
+    <br>
+<% end %>
