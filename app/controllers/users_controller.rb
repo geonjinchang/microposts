@@ -39,6 +39,12 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
+
+ #favorites_user GET    /users/:id/favorites(.:format)  users#favorites
+  def favorites
+    @user = User.find(params[:id])
+    @favorites = @user.favorite_posts
+  end
   
   private
 

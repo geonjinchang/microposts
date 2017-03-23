@@ -5,6 +5,7 @@
           <%= gravatar_for @user %>
           <%= @user.name %>
         </h1>
+        <%= link_to "favorites", favorites_user_path(@user)%>
       </section>
     </aside>
     <div class="col-md-8">
