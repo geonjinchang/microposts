@@ -4,8 +4,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    #@microposts = @user.microposts.order(created_at: :desc)
-   @microposts = @user.microposts.order(created_at: :desc).page(params[:page]).per(10)
+    @microposts = @user.microposts.order(created_at: :desc).page(params[:page]).per(10)
 
   end
   
@@ -46,6 +45,19 @@ class UsersController < ApplicationController
     @favorites = @user.favorite_posts
   end
   
+
+#followings_user GET    /users/:id/followings(.:format) users#followings
+  def followings
+    @user = User.find(params[:id])
+    @follow = @user.following_users
+  end
+
+# followers_user GET    /users/:id/followers(.:format)  users#followers  
+  def followers
+    @user = User.find(params[:id])
+    @follow = @user.follower_users
+  end
+
   private
 
   def set_user
